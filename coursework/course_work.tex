@@ -1,0 +1,320 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[12pt]{extsizes} 
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage[left=20mm, top=15mm, right=15mm, bottom=15mm, nohead, footskip=10mm]{geometry}
+\usepackage{setspace,amsmath}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\graphicspath{}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+
+\author{Михаил Цион}
+\date{Апрель-май 2018}
+\title{Курсач БД}
+
+\begin{document}
+
+
+\begin{center}
+    \hfill \break
+    \large{МИНОБРНАУКИ РОССИИ}\\
+    \small{\textbf{МОСКОВСКИЙ ФИЗИКО-ТЕХНИЧЕСКИЙ ИНСТИТУТ \\(ГОСУДАРСТВЕННЫЙ УНИВЕРСИТЕТ)}}\\
+    \hfill \break
+    \normalsize{Физтех-школа прикладной математики и информатики (ФПМИ)}\\
+    \normalsize{Факультет инноваций и высоких технологий (ФИВТ)}\\
+    \hfill \break
+    \hfill \break
+    \hfill \break
+    \hfill \break
+    \large{ПРОЕКТИРОВАНИЕ БАЗЫ ДАННЫХ КАРШЕРИНГОВОЙ КОМПАНИИ}\\
+    \hfill \break
+    \hfill \break
+    \hfill \break
+    \hfill \break
+    \hfill \break
+    \normalsize{Курсовой проект}\\
+    \hfill \break
+    \hfill \break
+    \normalsize{Выполнил:}\\
+    \normalsize{Цион Михаил Владиславович}\\
+    \normalsize{Группа 797}\\
+    \hfill \break
+    \hfill \break
+\end{center}
+\vfill
+\begin{center} Москва 2018 \end{center}
+
+
+\thispagestyle{empty}
+\newpage
+
+\section{Концептуальная модель}
+
+Основные сущности:
+
+\begin{itemize}
+    \item
+        Vehicle
+            
+    \item
+        Location
+            
+    \item
+        Employee 
+            
+    \item
+        Client
+        
+    \item
+        Rental
+        
+\end{itemize}
+
+Отношения между сущностями приведены в схеме ниже:
+
+\begin{figure}[h]
+    \center{\includegraphics[scale=0.42]{scheme.jpg}}
+    \caption{Концептуальная модель}
+    \label{fig:image}
+\end{figure}
+
+\newpage
+
+\section{Логическая модель}
+
+Проектируемая база находится в 3НФ. 
+
+\begin{figure}[h]
+    \center{\includegraphics[scale=0.5]{logical.jpg}}
+    \caption{Логическая модель (ER-диаграмма)}
+    \label{fig:image}
+\end{figure}
+
+\newpage
+
+\section{Физическая модель}
+
+
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{PARTICIPANT}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+participant\_id & Уникальный ключ сущности участник & INT &  & + &  \\ \hline
+participant\_type\_code & Клиент или работник & INT & NOT NULL &  &  \\ \hline
+first\_nm & Имя & VARCHAR(30) & NOT NULL &  &  \\ \hline
+middle\_nm & Второе имя/отчество & VARCHAR(30) &  &  &  \\ \hline
+last\_nm & Фамилия & VARCHAR(30) & NOT NULL &  &  \\ \hline
+gender\_code & Пол & INT &  &  &  \\ \hline
+email\_txt & Адрес электронной почты & VARCHAR(50) & * &  &  \\ \hline
+phone\_no & Номер телефона & VARCHAR(50) & ** &  &  \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Participant/Участник}
+\label{my-label}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{CLIENT\_PARTICIPANT}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+participant\_id & Уникальный ключ сущности клиент & INT &  & + & + \\ \hline
+penalties\_cnt & Штрафные баллы & INT & NOT NULL, DEFAULT 0, \textgreater{}= 0 &  &  \\ \hline
+departures\_cnt & Количество выполненных выездов & INT & NOT NULL, DEFAULT 0, \textgreater{}= 0 &  &  \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Client Participant/Клиент}
+\label{my-label}
+\end{table}
+
+
+\begin{table}[h]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{EMPLOYEE\_PARTICIPANT}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+participant\_id & Уникальный ключ сущности работник & INT &  & + & + \\ \hline
+contract\_no & Номер контракта & VARCHAR(20) & NOT NULL, UNIQUE &  &  \\ \hline
+insurance\_no & Номер страховки & VARCHAR(20) & NOT NULL, UNIQUE &  &  \\ \hline
+salary\_amt & Зарплата & REAL & NOT NULL, DEFAULT 0.0, \textgreater{}= 0.0 &  &  \\ \hline
+position\_code & Должность сотрудника & INT & NOT NULL &  &  \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Employee Participant/Работник}
+\label{my-label}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{VEHICLE}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+vehicle\_id & Уникальный ключ сущности тр. средства & INT &  & + &  \\ \hline
+registration\_plate\_no & Регистрационные знаки тр. средства & VARCHAR(20) & NOT NULL, UNIQUE &  &  \\ \hline
+make\_nm & Марка & VARCHAR(30) &  &  &  \\ \hline
+model\_nm & Модель & VARCHAR(30) &  &  &  \\ \hline
+vin & Идентификационный номер тр. средства & VARCHAR(17) & NOT NULL, UNIQUE &  &  \\ \hline
+electric\_flg & Является ли электромобилем & BOOLEAN & NOT NULL, DEFAULT FALSE &  &  \\ \hline
+transmission\_code & Тип коробки передачи & INT & NOT NULL &  &  \\ \hline
+departures\_cnt & Количество выполненых выездов & INT & NOT NULL, DEFAULT 0, \textgreater{}= 0 &  &  \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Vehicle/Транспортное средство}
+\label{my-label}
+\end{table}
+
+
+\begin{itemize}
+    \item
+        * - regexp\_match('\textasciicircum{}({[}\textbackslash{}w\textbackslash{}.\textbackslash{}-{]}+)@({[}\textbackslash{}w\textbackslash{}-{]}+)((\textbackslash{}.(\textbackslash{}w)\{2,3\})+)\$')\newline
+    \item
+        ** - regexp\_match('\textasciicircum{}((8|\textbackslash{}+7){[}\textbackslash{}- {]}?)?(\(?\d{3}\)?{[}\textbackslash{}- {]}?)?{[}\textbackslash{}d\textbackslash{}- {]}\{7,10\}\$')
+\end{itemize}
+
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{PARTICIPANT\_X\_VEHICLE}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+participant\_id & Внешний ключ сущности участник & INT &  & + & + \\ \hline
+vehicle\_id & Внешний ключ сущности тр. средства & INT &  & + & + \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Participant-Vehicle}
+\label{my-label}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{LOCATION}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+location\_id & Уникальный ключ сущности местность & INT &  & + &  \\ \hline
+partner\_id & Внешний ключ сущности партнёра & INT &  &  & + \\ \hline
+latitude & Широта & REAL & NOT NULL &  &  \\ \hline
+longitude & Долгота & REAL & NOT NULL &  &  \\ \hline
+address\_txt & Адрес & VARCHAR(20) &  &  &  \\ \hline
+city\_nm & Город & \multicolumn{1}{l|}{VARCHAR(20)} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} \\ \hline
+state\_nm & Область/штат & \multicolumn{1}{l|}{VARCHAR(20)} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} & \multicolumn{1}{l|}{} \\ \hline
+type\_code & Тип объекта на местности: стоянка/СТО/гараж/... & INT &  &  &  \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Location/Местность}
+\label{my-label}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{PARTNER}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+partner\_id & Уникальный ключ сущности партнёра & INT &  & + &  \\ \hline
+partner\_nm & Название партнерской компании & VARCHAR(50) & NOT NULL &  &  \\ \hline
+specialization\_code & Специализация компании & INT &  &  &  \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Partner/Партнер}
+\label{my-label}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{VEHICLE\_X\_LOCATION}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+vehicle\_id & Внешний ключ сущности тр. средства & INT &  & + & + \\ \hline
+location\_id & Внешний ключ сущности местность & INT &  & + & + \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Vehicle-Location}
+\label{my-label}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{RENTAL}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+rental\_id & Уникальный ключ сущности аренда & INT &  & + &  \\ \hline
+participant\_id & Внешний ключ сущности участник & INT &  &  & + \\ \hline
+vehicle\_id & Внешний ключ сущности тр. средства & INT &  &  & + \\ \hline
+cost\_amt & Стоимость аренды & REAL & NOT NULL, DEFAULT 0.0, \textgreater{}= 0.0 &  &  \\ \hline
+reservation\_dttm & Дата бронирования & TIMESTAMP(0) &  &  &  \\ \hline
+return\_dttm & Дата возвращения & TIMESTAMP(0) &  &  &  \\ \hline
+distance\_amt & Преодоленное расстояние & REAL & NOT NULL, DEFAULT 0.0, \textgreater{}= 0.0 &  &  \\ \hline
+gasoline\_amt & Использованное топливо/электроэнергия & REAL & NOT NULL, DEFAULT 0.0, \textgreater{}= 0 &  &  \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Rental/Аренда}
+\label{my-label}
+\end{table}
+
+
+\begin{table}[h!]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{PARTICIPANT\_X\_RENTAL}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+participant\_id & Внешний ключ сущности участник & INT &  & + & + \\ \hline
+vehicle\_id & Внешний ключ сущности тр. средства & INT &  & + & + \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Participant-Rental}
+\label{my-label}
+\end{table}
+
+\begin{table}[t]
+\centering
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{|l|l|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{\textbf{RENTAL\_X\_LOCATION}} \\ \hline
+\multicolumn{1}{|c|}{\textbf{Название}} & \multicolumn{1}{c|}{\textbf{Описание}} & \textbf{Тип данных} & \textbf{Ограничение} & \textbf{PK} & \textbf{FK} \\ \hline
+rental\_id & Внешний ключ сущности аренда & INT &  & + & + \\ \hline
+location\_id & Внешний ключ сущности местность & INT &  & + & + \\ \hline
+\end{tabular}%
+}
+\caption{Сущность Rental-Location}
+\label{my-label}
+\end{table}
+
+\hfill \break
+\hfill \break
+\hfill \break
+\hfill \break
+\hfill \break
+
+\end{document}
