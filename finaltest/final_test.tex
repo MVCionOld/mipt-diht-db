@@ -1,0 +1,187 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[12pt]{extsizes} 
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage[left=20mm, top=15mm, right=15mm, bottom=15mm, nohead, footskip=10mm]{geometry}
+\usepackage{setspace,amsmath}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{booktabs}
+
+\graphicspath{}
+\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+
+\author{Михаил Цион, группа 797}
+\date{14 мая 2018}
+\title{Контрольная работа по БД, вариант 3}
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+
+\section*{Задание 1: логическая модель}
+\begin{figure}[h]
+    \center{\includegraphics[scale=1.0]{logical_model.jpg}}
+    \caption{Логическая модель}
+    \label{fig:image}
+\end{figure}
+
+
+\newpage
+
+
+\section*{Задание 2: запросы}
+Получить все уникальные имена спортсменов из Ваканды, родившихся не позднее 11 сентября 2001 года:
+\newline
+\begin{enumerate}
+    \item 
+        \[S_0 = (SPORTSMAN[country\_nm = "\textup{Wakanda}" \land \\* birth\_dt \leq "\textup{2001-09-11}"]);\]
+        \[S_1 = S_0[sportsman\_id, full\_mn], \hspace{1cm} S_2 = S_1;\]
+        \[D = S_1[S_1.sportsman\_id \neq S_2.sportsman\_id \land \\* S_1.full\_nm = S_2.full\_nm]S_2;\]
+        Ответ: \[U = (S_1 - D)[\#.full\_nm]\]
+    \item 
+        \[S_0 = \{s: P_{SPORTSMAN}s \land \\* s[country\_name] = "\textup{Wakanda}" \land s[birth\_dt] \leq "\textup{2001-09-11}"\};\]
+        \[S_1 = \{s[sportsman\_id, full\_mn]: P_{S_0}s\}, \hspace{1cm} S_2 = S_1; \]
+        Ответ: \[U = \{s[full\_nm]: P_{S_1}s \land \neg\exists P_{S_2}p (s[sportsman\_id] \neq p[sportsman\_id] \land s[full\_nm] = p[full\_nm])\}.\]
+\end{enumerate}
+
+
+\section*{Задание 3: запросы}
+Получить все соревнования, на которых был установлен хотя бы один мировой рекорд:
+\newline
+\begin{enumerate}
+    \item 
+        \[Q = (RESULT[world\_record\_flg = True])[competition\_id]\]
+        Ответ: \[C = (COMPETITION[COMPETITION.competition\_id = Q.competition\_id]Q)[\#.*]\]
+    \item 
+        \[Q = \{r[competition\_id] :P_{RESULT}r \land r[world\_record\_flg] = True\}\]
+        Ответ: \[C = \{c :P_{COMPETITION}c \land \exists P_Qq(q[competition\_id] = c[competition\_id])\}\]
+\end{enumerate}
+
+
+\newpage
+
+
+\section*{Задание 4: запросы}
+Получить все соревнования, на которых все победители установили мировой рекорд (победитель – участник с полем «Результат» = 1; отдельно подсчитать соревнования, на которых победители установили мировой рекорд и на которых есть победители, НЕ установившие мировой рекорд). 
+\newline
+\begin{enumerate}
+    \item
+        \begin{enumerate}
+            \item
+                Все соревнования, на которых все победители установили мировой рекорд:
+                \[Q_0 = (RESULT[result = 1 \land world\_record\_flg \neq True])[\#.competition\_id];\]
+                \[Q_1 = (RESULT[result = 1 \land world\_record\_flg = True])[\#.competition\_id];\]
+                \[W = Q_1 - Q_0;\]
+                Ответ: \[C = (W[W.competition\_id = COMPETITION.competition\_id]COMPETITION)[\#.*].\]
+            \item
+                Все соревнования, на которых победители установили мировой рекорд и на которых есть победители, не установившие мировой рекорд:
+                \[Q_0 = RESULT[result = 1 \land world\_record\_flg \neq True];\]
+                \[Q_1 = RESULT[result = 1 \land world\_record\_flg = True];\]
+                \[W = (Q_0[Q_0.competition\_id = Q_1.competition\_id]Q_1)[\#.competition\_id];\]
+                Ответ: \[C = (W[W.competition\_id = COMPETITION.competition\_id]COMPETITION)[\#.*].\]
+        \end{enumerate}
+    \item
+        \begin{enumerate}
+            \item
+                Все соревнования, на которых все победители установили мировой рекорд:
+                \[Q_0 = \{r[competition\_id]: P_{RESULT}r \land r[result] = 1 \land r[world\_record\_flg] \neq True\};\]
+                \[Q_1 = \{r[competition\_id]: P_{RESULT}r \land r[result] = 1 \land r[world\_record\_flg] = True\};\]
+                \[Q = \{q_1: P_{Q_1}q_1 \land \neg\exists P_{Q_0}q_0 (q_1[competition\_id] = q_0[competition\_id])\};\]
+                Ответ: \[C = \{c: P_{COMPETITION}c \land \exists P_{Q}q(q[competition\_id] = c[competition\_id])\}.\]
+            \item
+                Все соревнования, на которых победители установили мировой рекорд и на которых есть победители, не установившие мировой рекорд:
+                \[Q_0 = \{r[competition\_id]: P_{RESULT}r \land r[result] = 1 \land r[world\_record\_flg] \neq True\};\]
+                \[Q_1 = \{r[competition\_id]: P_{RESULT}r \land r[result] = 1 \land r[world\_record\_flg] = True\};\]
+                \[Q = \{q_1: P_{Q_1}q_1 \land \exists P_{Q_0}q_0 (q_1[competition\_id] = q_0[competition\_id])\};\]        
+                Ответ: \[C = \{c: P_{COMPETITION}c \land \exists P_{Q}q(q[competition\_id] = c[competition\_id])\}.\]
+        \end{enumerate}
+\end{enumerate}
+
+
+\newpage
+
+
+\section*{Задание 5: sql-запрос}
+Получить всех спортсменов из Ваканды, а также дату их рождения, хоть раз установивших мировой рекорд на соревнованиях в Бангладеше:
+\newline
+\begin{verbatim}
+WITH 
+  WR_HOLDER AS (
+    SELECT DISTINCT
+      RESULT.sportsman_id
+    FROM
+      RESULT
+    INNER JOIN
+      COMPETITION
+      ON
+        RESULT.competition_id = COMPETITION.competition_id
+    WHERE 1 = 1
+      AND COMPETITION.competition_place_txt = 'Bangladesh'
+      AND RESULT.world_record_flg
+  )
+SELECT DISTINCT
+  SPORTSMAN.full_nm
+  , SPORTSMAN.birth_dt
+FROM
+  SPORTSMAN
+WHERE 1 = 1
+  AND SPORTSMAN.sportsman_id IN (
+    SELECT
+      WR_HOLDER.sportsman_id
+    FROM
+      WR_HOLDER
+  )
+  AND SPORTSMAN.country_nm = 'Wakanda';
+\end{verbatim}
+
+
+\newpage
+
+
+\section*{Задание 6: sql-запрос}
+Получить наиболее успешных спортсменов с максимальным рекордом, сгруппированных по стране и отсортированных по стране:
+\newline
+\begin{verbatim}
+WITH
+  BEST_RESULT AS (
+    SELECT
+      max(SPORTSMAN.personal_record_value) AS personal_record_value
+      , SPORTSMAN.country_nm
+      , SPORTSMAN.sport_type_nm
+    FROM
+      SPORTSMAN
+    GROUP BY
+      SPORTSMAN.country_nm
+      , SPORTSMAN.sport_type_nm
+  )
+SELECT
+  S.full_nm
+  , S.birth_dt
+  , S.country_nm
+  , S.sport_type_nm
+  , S.personal_record_value
+FROM
+  SPORTSMAN AS S
+WHERE
+  S.personal_record_value = (
+    SELECT
+      max(BEST_RESULT.personal_record_value)
+    FROM
+      BEST_RESULT
+    WHERE 1 = 1
+      AND BEST_RESULT.sport_type_nm = S.sport_type_nm
+      AND BEST_RESULT.country_nm = S.country_nm
+  )
+ORDER BY
+  S.country_nm;
+\end{verbatim}
+
+
+\end{document}
+
