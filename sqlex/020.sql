@@ -1,12 +1,12 @@
 /* LANGUAGE plpgsql */
 SELECT 
-  maker
-  , COUNT(model) AS Count_Model
+    maker
+    , COUNT(model) AS Count_Model
 FROM 
-  Product
+    Product
 WHERE 1=1
-  AND type='PC'
+    AND type='PC'
 GROUP BY 
-  maker
+    maker
 HAVING 
-  COUNT(model)>=3
+    COUNT(model)>=3
