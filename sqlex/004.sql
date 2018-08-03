@@ -2,6 +2,6 @@
 SELECT 
     * 
 FROM 
-    printer 
+    Printer 
 WHERE 1=1
     AND color = 'y'
