@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH Info AS (SELECT PIT.ID_psg, Trip.town_from, DATEADD(ss, DATEPART(ss, Trip.time_out), DATEADD(mi, DATEPART(mi, Trip.time_out), DATEADD(hh, DATEPART(hh, Trip.time_out), PIT.date))) AS Time
 FROM Pass_in_trip AS PIT INNER JOIN Trip ON PIT.trip_no = Trip.trip_no)
 

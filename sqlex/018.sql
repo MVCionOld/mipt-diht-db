@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT DISTINCT maker, price
 FROM Printer JOIN Product
 ON Printer.model = Product.model

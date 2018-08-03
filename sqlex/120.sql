@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH Help AS (SELECT DISTINCT PIT.trip_no, Trip.ID_comp, Trip.time_in, Trip.time_out, PIT.date
 FROM Pass_in_trip AS PIT INNER JOIN Trip ON Trip.trip_no = PIT.trip_no)
 

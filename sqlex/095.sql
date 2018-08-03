@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT (SELECT name FROM Company AS A1 WHERE A1.ID_comp = C19.ID_comp) AS company_name,
 (SELECT Y.CCC
 FROM (SELECT SUM(R.CNT) AS CCC, R.ID_comp

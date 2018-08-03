@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT date_begin, date_finish
 FROM (SELECT ROW_NUMBER() OVER (ORDER BY date_begin) AS N, *
 FROM (SELECT DISTINCT B_DATETIME AS date_begin

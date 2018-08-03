@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT DISTINCT maker, speed
 FROM laptop JOIN product
 ON laptop.model = product.model

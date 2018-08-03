@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH MinD AS (SELECT MIN(date) AS date
 FROM (SELECT PIT.date, COUNT(DISTINCT Trip.trip_no) as trip
 FROM Pass_in_trip AS PIT INNER JOIN Trip ON Trip.trip_no = PIT.trip_no

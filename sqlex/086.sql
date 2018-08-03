@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT maker, CASE
 WHEN SUM(types) = 1 THEN 'Laptop'
 WHEN SUM(types) = 2 THEN 'PC'

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT Ships.name,
 Ships.launched,
 

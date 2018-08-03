@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH t1 AS (SELECT class, name
 FROM ships
 UNION ALL

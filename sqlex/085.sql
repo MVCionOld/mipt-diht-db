@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT maker
 FROM(SELECT maker, MAX(type) AS type, COUNT(DISTINCT model) AS model
 FROM Product

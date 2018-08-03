@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT Pr1.maker
 FROM Product AS Pr1
 GROUP BY Pr1.maker

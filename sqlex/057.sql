@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH NEWSHIPS AS (SELECT Ships.name, Classes.class
 FROM Ships INNER JOIN Classes ON Ships.class = Classes.class
 UNION

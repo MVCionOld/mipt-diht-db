@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 /* И снова решение с ошибкой! Не работает, когда, например, деньги выдавали 30 дней подряд.
 WITH Temp AS(SELECT ISNULL(I.point, O.point) AS point, ISNULL(I.date, O.date) AS date, I.inc, O.out
 FROM Income_o AS I FULL JOIN Outcome_o AS O ON I.date = O.date and I.point = O.point)

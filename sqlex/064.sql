@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH T AS (SELECT point, date, Outcome, Income
 FROM (SELECT point, date, SUM(Outcome) AS Outcome, SUM(Income) AS Income
 FROM (SELECT point, date, NULL AS Outcome, SUM(inc) AS Income

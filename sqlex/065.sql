@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT ROW_NUMBER() OVER(ORDER BY maker, CASE WHEN type = 'PC' THEN 1 WHEN type = 'Laptop' THEN 2 ELSE 3 END) AS Nom, 
 CASE WHEN type = 'PC' THEN maker
 WHEN type = 'Laptop'

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT maker
 FROM PC JOIN Product
 ON PC.model = Product.model

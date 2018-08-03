@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH t1 AS (SELECT c1.class
 FROM classes c1
 WHERE c1.numguns >= ALL (

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT (SELECT name FROM Passenger WHERE ID_psg = T.ID_psg) AS name, CNT
 FROM(SELECT DISTINCT PIT.ID_psg, COUNT(*) AS CNT
 FROM Pass_in_trip AS PIT

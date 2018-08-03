@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 /* var. 1: WITH INNER JOIN */
 SELECT code, point, date, out
 FROM(SELECT CONVERT(CHAR(7), O.date, 120) AS month

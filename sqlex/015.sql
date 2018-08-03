@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT hd
 FROM PC
 GROUP BY hd

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH t AS (SELECT c.class
 FROM outcomes o, ships s, classes c
 WHERE result = 'sunk'

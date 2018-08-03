@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT DISTINCT name
 FROM Ships 
 WHERE name LIKE 'R%'

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT (SELECT name FROM Passenger WHERE ID_psg = PIT.ID_psg) AS name, COUNT(Trip.trip_no) AS CNT
 FROM Trip INNER JOIN Pass_in_trip AS PIT ON Trip.trip_no = PIT.trip_no
 GROUP BY PIT.ID_psg

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT maker, MAX(type)
 FROM Product
 GROUP BY maker

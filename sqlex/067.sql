@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH TTT AS (SELECT COUNT(trip_no) AS trip_no, town_from, town_to
 FROM Trip
 GROUP BY town_from, town_to

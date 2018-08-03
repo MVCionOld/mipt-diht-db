@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT (SELECT MIN(trip_no) FROM Trip) AS min1,
 (SELECT MIN(trip_no) FROM Trip WHERE trip_no > (SELECT MIN(trip_no) FROM Trip)) AS min2,
 (SELECT MIN(trip_no) FROM Trip WHERE trip_no > (SELECT MIN(trip_no) FROM Trip WHERE trip_no > (SELECT MIN(trip_no) FROM TRIP))) AS min3,

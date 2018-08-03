@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT DISTINCT maker 
 FROM Product
  EXCEPT 

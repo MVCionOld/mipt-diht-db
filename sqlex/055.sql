@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 Select c.class, min(launched)
 from ships s left join classes c on s.class = c.class
 group by c.class

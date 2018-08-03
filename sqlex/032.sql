@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT DISTINCT Q.country, CONVERT(NUMERIC(6,2), (SUM((Q.bore * Q.bore * Q.bore) * Q.cnt) / SUM(Q.cnt) / 2)) weight
 FROM (SELECT c.country, c.class, c.bore, (
           SELECT (COUNT(name)+

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH Dates(trip_no, date) AS(
 SELECT DISTINCT trip.trip_no, date
 FROM trip inner join pass_in_trip on trip.trip_no = pass_in_trip.trip_no

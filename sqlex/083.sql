@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT Ships.name
 FROM Ships INNER JOIN Classes ON Classes.class = Ships.class
 WHERE (CASE WHEN Classes.numGuns = 8 THEN 1 ELSE 0 END) +

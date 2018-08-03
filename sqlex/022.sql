@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT speed, AVG(price) AS Avg_Price
 FROM PC
 GROUP BY speed

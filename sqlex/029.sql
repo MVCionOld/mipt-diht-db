@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT t.point, t.date, SUM(t.inc), sum(t.out)
 FROM (SELECT point, date, inc, null AS out
 FROM Income_o  

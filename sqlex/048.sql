@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT distinct classes.class
 FROM ships left join classes on ships.class = classes.class
 WHERE name in (SELECT distinct ship FROM outcomes WHERE result = 'sunk')

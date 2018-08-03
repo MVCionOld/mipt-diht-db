@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT AVG(price)
 FROM(
 	SELECT price

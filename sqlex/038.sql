@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT country
 FROM Classes
 WHERE type = 'bb'

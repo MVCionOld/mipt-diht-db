@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH S AS (
 SELECT Classes.country, outcomes.battle
 FROM Outcomes INNER JOIN Ships ON Outcomes.ship = Ships.name INNER JOIN Classes ON Ships.class = Classes.class

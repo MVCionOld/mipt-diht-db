@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH UNITED AS
 (
 SELECT model, price

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT (SELECT name FROM Passenger WHERE  ID_psg = P.ID_psg)
 FROM (SELECT PIT.ID_psg, Trip.town_from AS Town
 FROM Pass_in_trip AS PIT INNER JOIN Trip ON PIT.trip_no = Trip.trip_no

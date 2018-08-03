@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH S AS (SELECT COUNT(model) AS C
 FROM Product
 GROUP BY Maker)

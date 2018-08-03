@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 /* С побитовым операндом */
 WITH CTE AS (SELECT Code, Speed, Ram, Speed | Ram AS num_orig, Speed | Ram as working_level, 0 AS cnt
 FROM PC

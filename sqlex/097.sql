@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT code, speed, ram, price, screen
 FROM Laptop
 WHERE

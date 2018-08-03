@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT point, date, SUM(sum_out), SUM(sum_inc) 
 FROM( SELECT point, date, SUM(inc) AS sum_inc, null AS sum_out
 FROM Income 

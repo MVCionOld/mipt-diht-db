@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT name
 FROM battles
 WHERE YEAR(date) NOT IN

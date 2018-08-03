@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH t1 AS (SELECT ship, date
 FROM outcomes, battles
 WHERE outcomes.battle = battles.name

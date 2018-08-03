@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH X AS (SELECT point, date, SUM(inc-out) AS rem
 FROM (SELECT point, date, SUM(COALESCE(inc, 0)) AS inc, 0 AS out
 FROM Income

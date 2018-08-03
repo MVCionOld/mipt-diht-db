@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH X AS (
 SELECT NULL AS Out, SUM(Income_o.inc) AS Inc
 FROM Income_o

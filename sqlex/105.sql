@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT maker, model, ROW_NUMBER() OVER(ORDER BY maker, model) AS A,
 
 (SELECT q

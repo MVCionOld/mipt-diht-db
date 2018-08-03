@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT Maker, COUNT (model) AS Count_Model
 FROM Product
 WHERE type = 'PC'

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT p1.maker, p2.type,
 CAST( 100.0 * 
 (SELECT COUNT(1) FROM product p WHERE p.maker = p1.maker AND p.type=  p2.type)

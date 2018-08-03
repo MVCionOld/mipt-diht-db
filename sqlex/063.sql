@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT P.name
 FROM Passenger AS P
 WHERE P.ID_psg IN (

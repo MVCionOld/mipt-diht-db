@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT name, CONVERT(CHAR(10), date, 120) AS battle_dt,
 
 CONVERT(CHAR(10),

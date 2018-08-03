@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH T AS (SELECT Battle, Country, COUNT(ship) AS CS
 FROM (
 SELECT Outcomes.battle, Classes.country, Outcomes.ship

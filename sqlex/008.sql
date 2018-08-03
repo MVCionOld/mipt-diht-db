@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT maker
 FROM Product
 WHERE type = 'PC'

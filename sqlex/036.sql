@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT DISTINCT ship
 FROM Outcomes inner join classes ON Classes.class = Outcomes.ship
 UNION

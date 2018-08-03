@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH R AS(
 SELECT Country, Class
 FROM Classes

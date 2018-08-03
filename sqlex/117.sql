@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH T AS (SELECT DISTINCT country, MAX(numGuns)*5000 AS NG, MAX(bore)*3000 AS BR, MAX(displacement) AS DP
 FROM Classes AS C
 GROUP BY country)

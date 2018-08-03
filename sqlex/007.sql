@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT Product.model, price
 FROM Product JOIN PC
 ON Product.model = PC.model

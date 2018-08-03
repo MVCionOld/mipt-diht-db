@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT Category,CatValue
 FROM 
    (SELECT top 1 model, cast(speed as varchar(50)) speed, 

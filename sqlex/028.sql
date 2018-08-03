@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT CAST
 (             
 CASE

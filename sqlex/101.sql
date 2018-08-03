@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH Tmp AS 
 (
 SELECT *,

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 select cast(avg(cast(all_ships.numguns as numeric(4,2)))  as numeric(4,2)) avg_guns
 FROM 
 (

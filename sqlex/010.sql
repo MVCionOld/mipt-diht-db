@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT model, price
 FROM Printer
 WHERE price =

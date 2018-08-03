@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 WITH NEWPC AS(SELECT ROW_NUMBER() OVER(ORDER BY code) AS no, code, price
 FROM PC)
 

@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT point, SUM(abs)
 FROM(
 SELECT point, SUM(isnull(inc, 0))

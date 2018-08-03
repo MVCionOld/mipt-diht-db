@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT name
 FROM Ships inner join classes on ships.class = Classes.class
 WHERE bore = 16

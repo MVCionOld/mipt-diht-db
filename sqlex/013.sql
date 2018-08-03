@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT AVG(speed)
 FROM Product JOIN PC
 ON Product.model = PC.model

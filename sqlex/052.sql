@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 select s.name
 from ships s left join classes c
 on c.class = s.class
