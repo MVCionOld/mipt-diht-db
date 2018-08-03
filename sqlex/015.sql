@@ -1,5 +1,9 @@
 /* LANGUAGE plpgsql */
-SELECT hd
-FROM PC
-GROUP BY hd
-HAVING COUNT(hd) >= 2
+SELECT 
+    hd
+FROM
+    PC
+GROUP BY
+    hd
+HAVING 
+    COUNT(hd)>=2
