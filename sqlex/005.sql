@@ -1,3 +1,9 @@
 /* LANGUAGE plpgsql */
-Select model, speed, hd from pc
-where (CD = '12x' or cd = '24X') and (price < 600)
+SELECT 
+    model
+    , speed
+    , hd 
+FROM pc
+WHERE 1=1
+    AND CD IN ('12x', '24X') 
+    AND (price < 600)
