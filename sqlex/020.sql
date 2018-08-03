@@ -1,6 +1,12 @@
 /* LANGUAGE plpgsql */
-SELECT Maker, COUNT (model) AS Count_Model
-FROM Product
-WHERE type = 'PC'
-GROUP BY maker
-HAVING COUNT(model) >= 3
+SELECT 
+  maker
+  , COUNT(model) AS Count_Model
+FROM 
+  Product
+WHERE 1=1
+  AND type='PC'
+GROUP BY 
+  maker
+HAVING 
+  COUNT(model)>=3
