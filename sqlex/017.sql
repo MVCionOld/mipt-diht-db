@@ -8,10 +8,10 @@ FROM
 	, PC
 	, Product
 WHERE 1=1
-	AND Product.type='Laptop'
 	AND Laptop.speed<ALL(
 		SELECT 
 			speed
 		FROM 
 			PC
 	)
+    AND Product.type='Laptop'
