@@ -1,2 +1,7 @@
 /* LANGUAGE plpgsql */
-select * from printer where color = 'y'
+SELECT 
+    * 
+FROM 
+    printer 
+WHERE 1=1
+    AND color = 'y'
