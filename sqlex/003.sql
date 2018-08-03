@@ -1,2 +1,9 @@
 /* LANGUAGE plpgsql */
-select model, ram, screen from laptop where price > 1000
+SELECT
+    model
+    , ram
+    , screen 
+FROM 
+    laptop 
+WHERE 1=1
+    AND price>1000
