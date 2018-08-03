@@ -1,6 +1,6 @@
 /* LANGUAGE plpgsql */
 SELECT DISTINCT 
-    Product.type
+	Product.type
 	, Laptop.model
 	, Laptop.speed
 FROM 
