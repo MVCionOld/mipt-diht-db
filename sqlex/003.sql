@@ -4,6 +4,6 @@ SELECT
     , ram
     , screen 
 FROM 
-    laptop 
+    Laptop 
 WHERE 1=1
     AND price>1000
