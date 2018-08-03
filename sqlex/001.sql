@@ -1,3 +1,4 @@
+/* LANGUAGE plpgsql */
 SELECT 
     model
     , speed
