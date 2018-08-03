@@ -3,5 +3,5 @@ SELECT DISTINCT
     maker 
 FROM 
     Product 
-WHERE 
-    type = 'printer'
+WHERE 1=1
+    AND type='printer'
