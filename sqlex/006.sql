@@ -1,5 +1,12 @@
 /* LANGUAGE plpgsql */
-SELECT DISTINCT maker, speed
-FROM laptop JOIN product
-ON laptop.model = product.model
-WHERE hd >= 10
+SELECT DISTINCT 
+    maker
+    , speed
+FROM 
+    Laptop 
+JOIN 
+    Product
+ON 
+    Laptop.model=Product.model
+WHERE 
+    hd>=10
