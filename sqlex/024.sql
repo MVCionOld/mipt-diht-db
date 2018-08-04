@@ -1,21 +1,37 @@
 /* LANGUAGE plpgsql */
-WITH UNITED AS
-(
-SELECT model, price
-FROM PC
+WITH 
+    UNITED AS (
+        SELECT 
+            model
+            , price
+        FROM 
+            PC
 
-UNION
+        UNION
 
-SELECT model, price
-FROM Laptop
+        SELECT 
+            model
+            , price
+        FROM 
+            Laptop
 
-UNION
+        UNION
 
-SELECT model, price
-FROM Printer
-)
-SELECT model
-FROM UNITED
-WHERE price = (
-SELECT MAX (price) AS max_price
-FROM UNITED )
+        SELECT 
+            model
+            , price
+        FROM 
+            Printer
+    )
+
+SELECT 
+    model
+FROM 
+    UNITED
+WHERE 
+    price=(
+        SELECT 
+            MAX(price) AS max_price
+        FROM 
+            UNITED
+    )
