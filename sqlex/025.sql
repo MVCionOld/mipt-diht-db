@@ -1,25 +1,40 @@
 /* LANGUAGE plpgsql */
-SELECT DISTINCT maker
-FROM product
-WHERE model IN (
-SELECT model
-FROM pc
-WHERE ram = (
-  SELECT MIN(ram)
-  FROM pc
-  )
-AND speed = (
-  SELECT MAX(speed)
-  FROM pc
-  WHERE ram = (
-   SELECT MIN(ram)
-   FROM pc
-   )
-  )
-)
-AND
-maker IN (
-SELECT maker
-FROM product
-WHERE type='printer'
-)
+SELECT DISTINCT
+    maker
+FROM 
+    Product
+WHERE 1=1
+    AND model IN (
+        SELECT 
+            model
+        FROM 
+            PC
+        WHERE 1=1
+            AND ram=(
+                SELECT 
+                    MIN(ram)
+                FROM 
+                    PC
+            )
+            AND speed=(
+                SELECT 
+                    MAX(speed)
+                FROM 
+                    PC
+                WHERE 1=1
+                    AND ram=(
+                       SELECT 
+                            MIN(ram)
+                       FROM 
+                            PC
+                    )
+              )
+        )
+    AND maker IN (
+        SELECT 
+            maker
+        FROM 
+            Product
+        WHERE 1=1 
+            AND type='printer'
+    )
