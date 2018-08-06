@@ -10,4 +10,4 @@ JOIN
     ON 
         Classes.class=Ships.class
 WHERE 
-    numGuns>=10
+    numguns>=10
