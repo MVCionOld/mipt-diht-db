@@ -1,4 +1,16 @@
 /* LANGUAGE plpgsql */
-SELECT Distinct battles.name
-FROM (battles inner join outcomes on name = battle) inner join ships on ship = ships.name
-WHERE class = 'Kongo'
+SELECT DISTINCT
+    Battles.name
+FROM (
+    Battles 
+    JOIN 
+        Outcomes 
+        ON 
+            name=battle
+) 
+JOIN
+    Ships 
+    ON 
+        ship=ships.name
+WHERE 1=1
+    AND class='Kongo'
